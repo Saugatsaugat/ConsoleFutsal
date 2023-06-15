@@ -15,6 +15,7 @@ public class Futsal {
     private String address;
     private BigInteger mobile;
     private BigDecimal rate;
+    private BigDecimal userId;
 
     public BigDecimal getId() {
         return id;
@@ -64,9 +65,19 @@ public class Futsal {
         this.rate = rate;
     }
 
+    public BigDecimal getUserId() {
+        return userId;
+    }
+
+    public void setUserId(BigDecimal userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
-        return "Futsal{" + "id=" + id + ", name=" + name + ", pan=" + pan + ", address=" + address + ", mobile=" + mobile + ", rate=" + rate + '}';
+        return "Futsal{" + "id=" + id + ", name=" + name + ", pan=" + pan + ", address=" + address + ", mobile=" + mobile + ", rate=" + rate + ", userId=" + userId + '}';
     }
+
+    
     
 }

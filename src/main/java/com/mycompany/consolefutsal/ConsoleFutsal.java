@@ -1,6 +1,7 @@
 package com.mycompany.consolefutsal;
 
 import controller.AdminController;
+import controller.FutsalController;
 import controller.LoginController;
 import controller.UsersRegisterController;
 import entites.User;
@@ -42,6 +43,10 @@ public class ConsoleFutsal {
                             if ("admin".equals(type)) {
                                 new AdminController().adminPage(user);
                             }
+                            else if ("futsalowner".equals(type)) {
+                                new FutsalController().mainPage(user);
+                            }
+                            
                         } else {
                             System.out.println("Invalid Credentials");
                         }

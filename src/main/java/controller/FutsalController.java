@@ -2,6 +2,7 @@ package controller;
 
 import entites.Futsal;
 import entites.FutsalCRUD;
+import entites.User;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Scanner;
@@ -12,13 +13,26 @@ import java.util.Scanner;
  */
 public class FutsalController {
     
-    public void futsalRegister(){
+    public void mainPage(User user){
+        String firstname = user.getFirstname();
+        String lastname = user.getLastname();
+        BigDecimal userId = user.getId();
+        System.out.println("**************************\n  Futsal Registration Page\n***********************");
+        System.out.println("Welcome "+firstname+" "+lastname);
+        System.out.println("Register your futsal");
+        futsalRegister(userId);
+        
+    }
+    
+    public void futsalRegister(BigDecimal userId){
         Futsal futsalInformation = getRegistrationInformation();
+        futsalInformation.setUserId(userId);
         if(new FutsalCRUD().addFutsal(futsalInformation)){
             System.out.println("Futsal registered");
         }
         else{
             System.out.println("Futsal Registration Failed");
+            
         }
         
     }
