@@ -1,3 +1,4 @@
+controller/AdminController.class
 controller/ValidationController.class
 controller/PasswordHashController.class
 repository/CRUDRepo.class

@@ -1,8 +1,11 @@
 
 package com.mycompany.consolefutsal;
 
+import controller.AdminController;
 import controller.LoginController;
 import controller.RegisterController;
+import entites.User;
+import entites.UserCRUD;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -34,7 +37,16 @@ public class ConsoleFutsal {
                     String password = loginInformation.get(1);
                     username = username.toLowerCase();
                     boolean status = new LoginController().verifylogin(username, password);
-                    System.out.println("Status: "+status);
+                   if (status) {
+                       User user = new UserCRUD().getDataByEmail(username);
+                        String type = user.getType();
+                        if("admin".equals(type)){
+                            new AdminController().adminPage(user);
+                        }
+                   }
+                   else {
+                        System.out.println("Invalid Credentials");
+                    }
                     
                     break;
                 case 3:
