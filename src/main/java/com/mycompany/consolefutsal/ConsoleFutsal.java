@@ -1,7 +1,10 @@
 
 package com.mycompany.consolefutsal;
 
+import controller.LoginController;
 import controller.RegisterController;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -25,8 +28,17 @@ public class ConsoleFutsal {
                   new RegisterController().makeRegistration();
                     break;
                 case 2:
+                    List<String> loginInformation = new ArrayList<>();
+                    loginInformation = new LoginController().getLoginInformation();
+                    String username = loginInformation.get(0);
+                    String password = loginInformation.get(1);
+                    username = username.toLowerCase();
+                    boolean status = new LoginController().verifylogin(username, password);
+                    System.out.println("Status: "+status);
+                    
                     break;
                 case 3:
+                    System.exit(0);
                     break;
             }
         }
