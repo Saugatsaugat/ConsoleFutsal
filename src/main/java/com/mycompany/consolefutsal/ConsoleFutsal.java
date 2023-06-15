@@ -21,6 +21,7 @@ public class ConsoleFutsal {
             int ch = sc.nextInt();
             switch (ch) {
                 case 1:
+                  
                     break;
                 case 2:
                     break;
