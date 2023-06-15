@@ -36,12 +36,12 @@ public class UsersRegisterController {
                 case 1:
                     registerInformation.put("type", "user");
 
-                    email = registerInformation.get("email");
+                    id = new BigDecimal(registerInformation.get("id"));
                     if (new ValidationController().checkIfIdExistForUser(id)) {
 
                     } else {
                         if (new ValidationController().checkIfEmailExist(email)) {
-                            System.out.println("User Already registered");
+                             System.out.println("Id already Exits!!!");
                         } else {
                             List<String> messages = new ValidationController().validateUserRegistration(registerInformation);
                             if ((messages.size()) > 0) {
@@ -62,9 +62,9 @@ public class UsersRegisterController {
                     break;
                 case 2:
                     registerInformation.put("type", "futsalowner");
-                    email = registerInformation.get("email");
-                    if (new ValidationController().checkIfEmailExist(email)) {
-                        System.out.println("User Already registered");
+                    id = new BigDecimal(registerInformation.get("id"));
+                    if (new ValidationController().checkIfIdExistForUser(id)) {
+                         System.out.println("Id already Exits!!!");
                     } else {
                         List<String> messages = new ValidationController().validateUserRegistration(registerInformation);
                         if ((messages.size()) > 0) {
@@ -83,9 +83,9 @@ public class UsersRegisterController {
                     break;
                 case 3:
                     registerInformation.put("type", "admin");
-                    email = registerInformation.get("email");
-                    if (new ValidationController().checkIfEmailExist(email)) {
-                        System.out.println("User Already registered");
+                    id = new BigDecimal(registerInformation.get("id"));
+                    if (new ValidationController().checkIfIdExistForUser(id)) {
+                        System.out.println("Id already Exits!!!");
                     } else {
                         List<String> messages = new ValidationController().validateUserRegistration(registerInformation);
                         if ((messages.size()) > 0) {

@@ -5,6 +5,8 @@ import entites.FutsalCRUD;
 import entites.User;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -43,6 +45,7 @@ public class FutsalController {
 
     public Futsal getRegistrationInformation() {
         Scanner sc = new Scanner(System.in);
+        List<String> errorMessage = new ArrayList<String>();
         Futsal futsal = new Futsal();
         try {
             System.out.println("Enter Id: ");
@@ -71,10 +74,22 @@ public class FutsalController {
 
             if (new ValidationController().checkIfIdExistForFutsal(id)) {
                 System.out.println("Id already Exits");
-
+                futsal = null;
                 return null;
             }
             
+            if((name==null)||(pan==null)||(mobile==null)||(rate==null)||(address==null)){
+                errorMessage.add("All fields are necessary");
+            }
+            String ms1 = new ValidationController().checkNumber(mobile);
+            String ms2 = new ValidationController().checkNumber(pan);
+            String ms3 = new ValidationController().checkNumber(rate);
+            if(ms1!=null||ms2!=null||ms3!=null){
+                System.out.println("Mobile, pan and Rate must be integer");
+                futsal =  null;
+                return null;
+            }
+ 
 
             futsal.setId(id);
             futsal.setName(name);

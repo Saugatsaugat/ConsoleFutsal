@@ -46,13 +46,13 @@ public class ValidationController<T> {
     }
     ///////////////////////////////////////////
 
-    public String checkMobile(BigInteger mobile) {
+    public String checkNumber(T mobile) {
         String msg = null;
         String numRegex = "[0-9]+";
         Pattern pattern = Pattern.compile(numRegex);
         Matcher matcher = pattern.matcher(mobile.toString());
         if (!matcher.matches()) {
-            msg = "mobile must be in integer";
+            msg = "must be in integer";
         }
         return msg;
     }
@@ -70,7 +70,7 @@ public class ValidationController<T> {
             errorMessage.add("Only midname can be null");
         }
         String msg1 = checkEmail(email);
-        String msg2 = checkMobile(mobile);
+        String msg2 = checkNumber((T)mobile);
         String msg3 = checkName(firstname);
         String msg4 = checkName(lastname);
         if(msg1!=null){
