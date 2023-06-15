@@ -214,15 +214,15 @@ public void removeUser() {
          System.out.println(id+"\t"+pan+"\t"+name+"\t\t"+address+"\t"+mobile+"\t"+rate+"\t"+ownerId);
 
      }
-      System.out.print("\nAvailable Operations\n1.Edit Futsal\n2.Delete Futsa\n3.Exit\nSelect:");
+      System.out.print("\nAvailable Operations\n1.Edit Futsal\n2.Delete Futsa\n3.Go Back\nSelect:");
         Scanner sc = new Scanner(System.in);
         int ch = sc.nextInt();
         switch (ch) {
             case 1:
+                new FutsalController().editFutsal();
                 break;
             case 2:
                 new FutsalController().removeFutsal();
-
                 break;
             case 3:
                 break;
