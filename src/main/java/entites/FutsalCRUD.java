@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package entites;
 
 import java.math.BigDecimal;
@@ -13,23 +10,23 @@ import repository.CRUDRepo;
  * @author saugat
  */
 public class FutsalCRUD extends CRUDRepo<Futsal> {
-    static FutsalCRUD obj = new FutsalCRUD();
+    public static FutsalCRUD obj1 = new FutsalCRUD();
 
     public boolean addFutsal(Futsal futsalInformation) {
-        if ((obj.create(futsalInformation)) == null) {
-            return false;
+        if ((obj1.create(futsalInformation)) != null) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     ////////////////////////////////////
     public List<Futsal> getFutsalList() {
-        return obj.getAllData();
+        return obj1.getAllData();
     }
 
 //    //////////////////////////////////////
     public Futsal getFutsalDataById(BigDecimal id) {
-        Futsal futsal = obj.getDataById(id);
+        Futsal futsal = obj1.getDataById(id);
         if(futsal!=null){
             return futsal;
         }
@@ -38,7 +35,7 @@ public class FutsalCRUD extends CRUDRepo<Futsal> {
     
     public boolean deleteFutsalDataById(BigDecimal id)
     {
-        if(obj.deleteById(id)){
+        if(obj1.deleteById(id)){
             return true;
         }
         return false;

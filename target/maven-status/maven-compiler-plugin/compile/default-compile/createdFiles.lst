@@ -3,6 +3,7 @@ entites/FutsalCRUD.class
 controller/PasswordHashController.class
 com/mycompany/consolefutsal/Database.class
 repository/CRUDRepo.class
+controller/FutsalController.class
 com/mycompany/consolefutsal/ConsoleFutsal.class
 controller/LoginController.class
 entites/Futsal.class

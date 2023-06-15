@@ -38,15 +38,14 @@ public class LoginController {
         List<User> userList = new UserCRUD().getUserList();
         for (User user : userList) {
             String pass = new PasswordHashController().getPasswordHash(password);
+            System.out.println(user.getEmail() + " : " + username);
+            System.out.println(user.getPassword() + " : " + pass);
+
             if ((user.getEmail().equals(username)) && user.getPassword().equals(pass)) {
                 return true;
-            } else {
-                return false;
-
-            }
+            } 
         }
         return false;
 
     }
 }
-

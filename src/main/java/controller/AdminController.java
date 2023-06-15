@@ -44,6 +44,7 @@ public class AdminController {
                     manageUsers();
                     break;
                 case 2:
+                    manageFutsals();
                     break;
                 case 3:
                     flag = false;
@@ -76,8 +77,8 @@ public class AdminController {
             }
 
         }
-        System.out.println("\nNote: Please use email for EDIT and DELTE");
-        System.out.print("\nAvailable Operations\n1.Edit User\n2.Delete User\n3.Exit\nSelect:");
+        System.out.println("\nNote: Please use id for EDIT and DELTE");
+        System.out.print("\nAvailable Operations\n1.Edit User\n2.Delete User\n3.Go Back\nSelect:");
         Scanner sc = new Scanner(System.in);
         int ch = sc.nextInt();
         switch (ch) {
@@ -182,7 +183,6 @@ public void removeUser() {
         newUser.setMobile(mobile);
         newUser.setPassword(user.getPassword());
         newUser.setEmail(email);
-                   System.out.println(newUser);
 
 
         if (new UserCRUD().deleteDataByEmail(id)) {
@@ -199,6 +199,36 @@ public void removeUser() {
 
     }
  
+ 
+ public void manageFutsals(){
+     System.out.println("Id\tpan\tName\t\tAddress\tmobile\trate\tOwnerId\n");
+     List<Futsal> futsalList = new FutsalCRUD().getFutsalList();
+     for(Futsal futsal : futsalList){
+         BigDecimal id = futsal.getId();
+         BigInteger pan = futsal.getPan();
+         String name = futsal.getName();
+         String address = futsal.getAddress();
+         BigInteger mobile = futsal.getMobile();
+         BigDecimal rate = futsal.getRate();
+         BigDecimal ownerId = futsal.getUserId();
+         System.out.println(id+"\t"+pan+"\t"+name+"\t\t"+address+"\t"+mobile+"\t"+rate+"\t"+ownerId);
 
+     }
+      System.out.print("\nAvailable Operations\n1.Edit Futsal\n2.Delete Futsa\n3.Exit\nSelect:");
+        Scanner sc = new Scanner(System.in);
+        int ch = sc.nextInt();
+        switch (ch) {
+            case 1:
+                break;
+            case 2:
+                new FutsalController().removeFutsal();
+
+                break;
+            case 3:
+                break;
+            default:
+                break;
+        }
+ }
 
 }

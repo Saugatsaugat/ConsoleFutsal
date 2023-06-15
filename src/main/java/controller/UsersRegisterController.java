@@ -37,7 +37,7 @@ public class UsersRegisterController {
                     registerInformation.put("type", "user");
 
                     email = registerInformation.get("email");
-                    if (new ValidationController().checkIfIdExist(id)) {
+                    if (new ValidationController().checkIfIdExistForUser(id)) {
 
                     } else {
                         if (new ValidationController().checkIfEmailExist(email)) {

@@ -17,7 +17,7 @@ import repository.CRUDRepo;
  */
 public class UserCRUD extends CRUDRepo<User> {
 
-    static UserCRUD obj = new UserCRUD();
+    public static UserCRUD obj = new UserCRUD();
 
     public boolean addUser(HashMap<String, String> registerInformation) {
         User user = new User();

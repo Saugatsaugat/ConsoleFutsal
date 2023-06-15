@@ -4,6 +4,8 @@
  */
 package controller;
 
+import entites.Futsal;
+import entites.FutsalCRUD;
 import entites.User;
 import entites.UserCRUD;
 import java.math.BigDecimal;
@@ -18,7 +20,7 @@ import java.util.regex.Pattern;
  *
  * @author saugat
  */
-public class ValidationController {
+public class ValidationController<T> {
 
     public String checkEmail(String email) {
         String msg = null;
@@ -94,10 +96,19 @@ public class ValidationController {
         }
         return false;
     }
-    public boolean checkIfIdExist(BigDecimal id) {
+    public boolean checkIfIdExistForUser(BigDecimal id) {
         List<User> userList = new UserCRUD().getUserList();
         for (User user : userList) {
             if (user.getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean checkIfIdExistForFutsal(BigDecimal id) {
+        List<Futsal> futsalList = new FutsalCRUD().getFutsalList();
+        for (Futsal futsal : futsalList) {
+            if (futsal.getId().equals(id)) {
                 return true;
             }
         }
