@@ -2,7 +2,7 @@ package com.mycompany.consolefutsal;
 
 import controller.AdminController;
 import controller.LoginController;
-import controller.RegisterController;
+import controller.UsersRegisterController;
 import entites.User;
 import entites.UserCRUD;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class ConsoleFutsal {
                 int ch = sc.nextInt();
                 switch (ch) {
                     case 1:
-                        new RegisterController().makeRegistration();
+                        new UsersRegisterController().makeRegistration();
                         break;
                     case 2:
                         List<String> loginInformation = new ArrayList<>();

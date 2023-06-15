@@ -53,9 +53,9 @@ public class UserCRUD extends CRUDRepo<User> {
         return null;
     }
     
-    public boolean deleteDataByEmail(String email)
+    public boolean deleteDataByEmail(BigDecimal id)
     {
-        if(obj.deleteById(email)){
+        if(obj.deleteById(id)){
             return true;
         }
         return false;

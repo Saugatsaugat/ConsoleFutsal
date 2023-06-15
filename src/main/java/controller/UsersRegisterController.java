@@ -16,7 +16,7 @@ import java.util.Scanner;
  *
  * @author saugat
  */
-public class RegisterController {
+public class UsersRegisterController {
     Scanner sc = new Scanner(System.in);
 
     public void makeRegistration() {
@@ -30,7 +30,7 @@ public class RegisterController {
         try {
             int ch = sc.nextInt();
             if (ch == 1 || ch == 2 || ch == 3) {
-                registerInformation = new RegisterController().getRegistrationInformation();
+                registerInformation = new UsersRegisterController().getRegistrationInformation();
             }
             switch (ch) {
                 case 1:

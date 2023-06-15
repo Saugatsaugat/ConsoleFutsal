@@ -9,7 +9,7 @@ import java.math.BigInteger;
  * @author saugat
  */
 public class User {
-     private BigDecimal id;
+    private BigDecimal id;
     private String type;
     private String email;
     private String firstname;

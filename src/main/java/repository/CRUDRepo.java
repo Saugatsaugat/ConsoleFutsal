@@ -4,6 +4,9 @@
  */
 package repository;
 
+import entites.Futsal;
+import entites.User;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,26 +37,42 @@ public abstract class CRUDRepo<T1> implements CRUDInterface<T1> {
     }
 
     @Override
-    public T1 getDataById(String email) {
-        T1 user = null;
-        for (T1 items : list) {
-            if (items.equals(email)) {
-                user = items;
+    public T1 getDataById(BigDecimal id) {
+        BigDecimal fetchedid = null;
+        T1 users = null;
+        for (T1 user : list) {
+            if (user instanceof User) {
+                User userItem = (User) user;
+                fetchedid = userItem.getId();
+            } else if (user instanceof Futsal) {
+                Futsal userItem = (Futsal) user;
+                fetchedid = userItem.getId();
+            }
+            if (fetchedid != null && fetchedid.compareTo(id) == 0) {
+                users = user;
             }
         }
-        return user;
+        return users;
     }
 
     @Override
-    public boolean deleteById(String email) {
-     
+    public boolean deleteById(BigDecimal id) {
+        BigDecimal fetchedid = null;
         for (T1 user : list) {
-            if (user.toString().contains(email)) {
+            if (user instanceof User) {
+                User userItem = (User) user;
+                fetchedid = userItem.getId();
+            } else if (user instanceof Futsal) {
+                Futsal userItem = (Futsal) user;
+                fetchedid = userItem.getId();
+            }
+            if (fetchedid != null && fetchedid.compareTo(id) == 0) {
                 list.remove(user);
                 return true;
             }
+
         }
-        
+
         return false;
     }
 

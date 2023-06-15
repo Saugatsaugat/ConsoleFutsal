@@ -94,9 +94,9 @@ public class AdminController {
     }
 public void removeUser() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the email of the user to delete:\n");
-        String email = sc.next();
-        if (new UserCRUD().deleteDataByEmail(email)) {
+        System.out.println("Enter the id of the user to delete:\n");
+        BigDecimal id = sc.nextBigDecimal();
+        if (new UserCRUD().deleteDataByEmail(id)) {
             System.out.println("Deleted Successfully");
             manageUsers();
         } else {
@@ -182,7 +182,7 @@ public void removeUser() {
                    System.out.println(newUser);
 
 
-        if (new UserCRUD().deleteDataByEmail(oldEmail)) {
+        if (new UserCRUD().deleteDataByEmail(id)) {
             if (new UserCRUD().addUser(newUser)) {
                 System.out.println("Updated Successfully");
 

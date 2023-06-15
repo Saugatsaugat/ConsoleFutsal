@@ -1,10 +1,13 @@
-controller/AdminController.class
 controller/ValidationController.class
+entites/FutsalCRUD.class
 controller/PasswordHashController.class
+com/mycompany/consolefutsal/Database.class
 repository/CRUDRepo.class
 com/mycompany/consolefutsal/ConsoleFutsal.class
 controller/LoginController.class
+entites/Futsal.class
+controller/UsersRegisterController.class
+controller/AdminController.class
 repository/CRUDInterface.class
-controller/RegisterController.class
 entites/UserCRUD.class
 entites/User.class
