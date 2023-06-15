@@ -52,6 +52,7 @@ public class AdminController {
 
         }
     }
+
     public void manageUsers() {
         List<User> userList = new UserCRUD().getUserList();
         System.out.println("ID\tType\tFirstname\tMidName\tLastName\t\tEmail\t\t\tMobile");
@@ -78,10 +79,11 @@ public class AdminController {
         int ch = sc.nextInt();
         switch (ch) {
             case 1:
-                
+
                 break;
             case 2:
-                
+                new AdminController().removeUser();
+
                 break;
             case 3:
                 break;
@@ -90,8 +92,16 @@ public class AdminController {
         }
 
     }
+public void removeUser() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the email of the user to delete:\n");
+        String email = sc.next();
+        if (new UserCRUD().deleteDataByEmail(email)) {
+            System.out.println("Deleted Successfully");
+            manageUsers();
+        } else {
+            System.out.println("Something went wrong");
 
-    
+        }
     }
-
-
+}
