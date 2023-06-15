@@ -1,6 +1,7 @@
 
 package com.mycompany.consolefutsal;
 
+import controller.RegisterController;
 import java.util.Scanner;
 
 /**
@@ -21,7 +22,7 @@ public class ConsoleFutsal {
             int ch = sc.nextInt();
             switch (ch) {
                 case 1:
-                  
+                  new RegisterController().makeRegistration();
                     break;
                 case 2:
                     break;

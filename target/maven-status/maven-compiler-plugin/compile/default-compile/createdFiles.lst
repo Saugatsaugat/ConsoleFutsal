@@ -1,1 +1,8 @@
+controller/ValidationController.class
+controller/PasswordHashController.class
+repository/CRUDRepo.class
 com/mycompany/consolefutsal/ConsoleFutsal.class
+repository/CRUDInterface.class
+controller/RegisterController.class
+entites/UserCRUD.class
+entites/User.class
