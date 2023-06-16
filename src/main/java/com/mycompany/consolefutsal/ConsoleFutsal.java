@@ -4,6 +4,7 @@ import controller.AdminController;
 import controller.FutsalController;
 import controller.LoginController;
 import controller.UsersRegisterController;
+import entites.FutsalCRUD;
 import entites.User;
 import entites.UserCRUD;
 import java.util.ArrayList;
@@ -15,6 +16,9 @@ import java.util.Scanner;
  * @author saugat
  */
 public class ConsoleFutsal {
+    
+        ObjectCreation obj = new ObjectCreation();
+       
 
     public static void main(String[] args) {
         boolean flag = true;
@@ -37,8 +41,10 @@ public class ConsoleFutsal {
                         String password = loginInformation.get(1);
                         username = username.toLowerCase();
                         boolean status = new LoginController().verifylogin(username, password);
+                        System.out.println("Status: "+status);
                         if (status) {
-                            User user = new UserCRUD().getDataByEmail(username);
+                            User user =new UserCRUD().getDataByEmail(username);
+                            System.out.println("User:"+user);
                             String type = user.getType();
                             if ("admin".equals(type)) {
                                 new AdminController().adminPage(user);
@@ -48,7 +54,7 @@ public class ConsoleFutsal {
                             }
                             
                         } else {
-                            System.out.println("Invalid Credentials");
+                            System.out.println("Invalid");
                         }
 
                         break;

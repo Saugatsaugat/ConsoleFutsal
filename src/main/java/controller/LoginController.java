@@ -35,16 +35,12 @@ public class LoginController {
 
     /////////////////////
     public boolean verifylogin(String username, String password) {
-        List<User> userList = new UserCRUD().getUserList();
-        for (User user : userList) {
-            String pass = new PasswordHashController().getPasswordHash(password);
-           
-
-            if ((user.getEmail().equals(username)) && user.getPassword().equals(pass)) {
-                return true;
-            } 
+        User user = UserCRUD.obj.getDataByEmail(username);
+        password = new PasswordHashController().getPasswordHash(password);
+        if((user.getEmail().equals(username)) && (user.getPassword().equals(password))){
+              return true;
         }
         return false;
+        }
 
-    }
 }

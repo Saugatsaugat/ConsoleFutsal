@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Scanner;
+import repository.CRUDRepo;
 
 /**
  *
@@ -57,7 +58,7 @@ public class AdminController {
     }
 
     public void manageUsers() {
-        List<User> userList = new UserCRUD().getUserList();
+        List<User> userList = UserCRUD.obj.getAllData();
         System.out.println("ID\tType\tFirstname\tMidName\tLastName\t\tEmail\t\t\tMobile");
         for (User user : userList) {
             BigDecimal id = user.getId();
@@ -99,7 +100,7 @@ public void removeUser() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the id of the user to delete:\n");
         BigDecimal id = sc.nextBigDecimal();
-        if (new UserCRUD().deleteDataByEmail(id)) {
+        if (UserCRUD.obj.deleteById(id)) {
             System.out.println("Deleted Successfully");
             manageUsers();
         } else {
@@ -110,9 +111,9 @@ public void removeUser() {
 
  public void editUser() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the email you want to edit:\n");
-        String email1 = sc.next();
-        User user = new UserCRUD().getDataByEmail(email1);
+        System.out.println("Enter the id you want to edit:\n");
+        BigDecimal id1 = sc.nextBigDecimal();
+        User user = UserCRUD.obj.getDataById(id1);
         System.out.println(user);
 
         BigDecimal id = user.getId();
@@ -184,8 +185,9 @@ public void removeUser() {
         newUser.setEmail(email);
 
 
-        if (new UserCRUD().deleteDataByEmail(id)) {
-            if (new UserCRUD().addUser(newUser)) {
+        if (UserCRUD.obj.deleteById(id)) {
+           
+            if (UserCRUD.obj.create(newUser)) {
                 System.out.println("Updated Successfully");
 
             } else {
@@ -201,7 +203,7 @@ public void removeUser() {
  
  public void manageFutsals(){
      System.out.println("Id\tpan\tName\t\tAddress\tmobile\trate\tOwnerId\n");
-     List<Futsal> futsalList = new FutsalCRUD().getFutsalList();
+     List<Futsal> futsalList = FutsalCRUD.obj.getAllData();
      for(Futsal futsal : futsalList){
          BigDecimal id = futsal.getId();
          BigInteger pan = futsal.getPan();

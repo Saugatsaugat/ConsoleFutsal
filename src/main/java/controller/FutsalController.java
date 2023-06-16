@@ -33,7 +33,7 @@ public class FutsalController {
         } 
         else {
             futsalInformation.setUserId(userId);
-            if (new FutsalCRUD().addFutsal(futsalInformation)) {
+            if (FutsalCRUD.obj.create(futsalInformation)) {
                 System.out.println("Futsal registered");
             } else {
                 System.out.println("Futsal Registration Failed");
@@ -111,7 +111,7 @@ public class FutsalController {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the id of the futsal to delete:\n");
         BigDecimal id = sc.nextBigDecimal();
-        if (new FutsalCRUD().deleteFutsalDataById(id)) {
+        if (FutsalCRUD.obj.deleteById(id)) {
             System.out.println("Deleted Successfully");
             new AdminController().manageFutsals();
         } else {
@@ -124,7 +124,7 @@ public class FutsalController {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the id you want to edit:\n");
         BigDecimal id1 = sc.nextBigDecimal();
-        Futsal futsal = new FutsalCRUD().getFutsalDataById(id1);
+        Futsal futsal = FutsalCRUD.obj.getDataById(id1);
         System.out.println(futsal);
 
         BigDecimal id = futsal.getId();
@@ -194,8 +194,8 @@ public class FutsalController {
         newFutsal.setUserId(ownerId);
 
 
-        if (new FutsalCRUD().deleteFutsalDataById(id)) {
-            if (new FutsalCRUD().addFutsal(newFutsal)) {
+        if (FutsalCRUD.obj.deleteById(id)) {
+            if (FutsalCRUD.obj.create(newFutsal)) {
                 System.out.println("Updated Successfully");
 
             } else {

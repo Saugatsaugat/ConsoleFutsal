@@ -11,7 +11,6 @@ import entites.UserCRUD;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -56,15 +55,15 @@ public class ValidationController<T> {
         }
         return msg;
     }
-    public List<String> validateUserRegistration(HashMap<String,String> registerInformation){
+    public List<String> validateUserRegistration(User registerInformation){
         List<String> errorMessage = new ArrayList<String>();
-        BigDecimal id = new BigDecimal(registerInformation.get("id"));
-        String type = registerInformation.get("type");
-        String firstname = registerInformation.get("firstname");
-        String lastname = registerInformation.get("lastname");
-        String email = registerInformation.get("email");
-        String password = registerInformation.get("password");
-        BigInteger mobile = new BigInteger(registerInformation.get("mobile"));
+        BigDecimal id = registerInformation.getId();
+        String type = registerInformation.getType();
+        String firstname = registerInformation.getFirstname();
+        String lastname = registerInformation.getLastname();
+        String email = registerInformation.getEmail();
+        String password = registerInformation.getPassword();
+        BigInteger mobile = registerInformation.getMobile();
         
         if((id==null)||(firstname==null)||(lastname==null)||(email==null)||(password==null)||(mobile==null)){
             errorMessage.add("Only midname can be null");
@@ -87,7 +86,7 @@ public class ValidationController<T> {
         
     }
     public boolean checkIfEmailExist(String email) {
-        List<User> userList = new UserCRUD().getUserList();
+        List<User> userList = UserCRUD.obj.getAllData();
         for (User user : userList) {
             if (user.getEmail().equals(email)) {
                 return true;
@@ -97,7 +96,7 @@ public class ValidationController<T> {
         return false;
     }
     public boolean checkIfIdExistForUser(BigDecimal id) {
-        List<User> userList = new UserCRUD().getUserList();
+        List<User> userList =  UserCRUD.obj.getAllData();
         for (User user : userList) {
             if (user.getId().equals(id)) {
                 return true;
@@ -106,7 +105,7 @@ public class ValidationController<T> {
         return false;
     }
     public boolean checkIfIdExistForFutsal(BigDecimal id) {
-        List<Futsal> futsalList = new FutsalCRUD().getFutsalList();
+        List<Futsal> futsalList = FutsalCRUD.obj.getAllData();
         for (Futsal futsal : futsalList) {
             if (futsal.getId().equals(id)) {
                 return true;

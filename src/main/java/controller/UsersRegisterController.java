@@ -1,14 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package controller;
 
 import entites.User;
 import entites.UserCRUD;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,10 +13,11 @@ import java.util.Scanner;
  * @author saugat
  */
 public class UsersRegisterController {
+    
     Scanner sc = new Scanner(System.in);
 
     public void makeRegistration() {
-        HashMap<String, String> registerInformation = new HashMap<String, String>();
+        User registerInformation = new User();
         User user = new User();
         boolean status = false;
         boolean emailIdFlag = false;
@@ -34,9 +31,9 @@ public class UsersRegisterController {
             }
             switch (ch) {
                 case 1:
-                    registerInformation.put("type", "user");
+                    registerInformation.setType("user");
 
-                    id = new BigDecimal(registerInformation.get("id"));
+                    id = registerInformation.getId();
                     if (new ValidationController().checkIfIdExistForUser(id)) {
 
                     } else {
@@ -49,7 +46,8 @@ public class UsersRegisterController {
                                     System.out.println(msg);
                                 }
                             } else {
-                                status = new UserCRUD().addUser(registerInformation);
+                               status = UserCRUD.obj.create(registerInformation);
+                               
                                 if (status) {
                                     System.out.println("User added Successfully");
                                 } else {
@@ -61,8 +59,8 @@ public class UsersRegisterController {
 
                     break;
                 case 2:
-                    registerInformation.put("type", "futsalowner");
-                    id = new BigDecimal(registerInformation.get("id"));
+                    registerInformation.setType("futsalowner");
+                    id = registerInformation.getId();
                     if (new ValidationController().checkIfIdExistForUser(id)) {
                          System.out.println("Id already Exits!!!");
                     } else {
@@ -72,7 +70,7 @@ public class UsersRegisterController {
                                 System.out.println(msg);
                             }
                         } else {
-                            status = new UserCRUD().addUser(registerInformation);
+                                status = UserCRUD.obj.create(registerInformation);
                             if (status) {
                                 System.out.println("Futsal Owner Successfully");
                             } else {
@@ -82,8 +80,8 @@ public class UsersRegisterController {
                     }
                     break;
                 case 3:
-                    registerInformation.put("type", "admin");
-                    id = new BigDecimal(registerInformation.get("id"));
+                    registerInformation.setType("admin");
+                    id = registerInformation.getId();
                     if (new ValidationController().checkIfIdExistForUser(id)) {
                         System.out.println("Id already Exits!!!");
                     } else {
@@ -93,7 +91,7 @@ public class UsersRegisterController {
                                 System.out.println(msg);
                             }
                         } else {
-                            status = new UserCRUD().addUser(registerInformation);
+                                status = UserCRUD.obj.create(registerInformation);
                             if (status) {
                                 System.out.println("Admin added Successfully");
                             } else {
@@ -112,8 +110,8 @@ public class UsersRegisterController {
     }
 
     /////////////////////////////////////////////////
-    public HashMap<String, String> getRegistrationInformation() {
-        HashMap<String, String> registerInformation = new HashMap<String, String>();
+    public User getRegistrationInformation() {
+        User registerInformation = new User();
         try {
 
             System.out.println("Enter Id: ");
@@ -142,14 +140,16 @@ public class UsersRegisterController {
 
             System.out.println("Enter password: ");
             String password = sc.next();
-
-            registerInformation.put("id", id.toString());
-            registerInformation.put("email", email);
-            registerInformation.put("firstname", firstname);
-            registerInformation.put("midname", midname);
-            registerInformation.put("lastname", lastname);
-            registerInformation.put("mobile", mobile.toString());
-            registerInformation.put("password", password);
+            
+            registerInformation.setId(id);
+            registerInformation.setFirstname(firstname);
+            registerInformation.setEmail(email);
+            registerInformation.setMidname(midname);
+            registerInformation.setLastname(lastname);
+            registerInformation.setMobile(mobile);
+            
+            String pass = new PasswordHashController().getPasswordHash(password);
+            registerInformation.setPassword(pass);
 
             return registerInformation;
 
@@ -157,20 +157,7 @@ public class UsersRegisterController {
             System.out.println(ex.getMessage());
 
         }
-        return registerInformation;
+        return null;
     }
-    ////////////////////////////////////////////////////////
 
-    public User setRegistrationInformation(HashMap<String, String> registerInformation) {
-        User user = new User();
-        user.setId(new BigDecimal(registerInformation.get("id")));
-        user.setType(registerInformation.get("type"));
-        user.setEmail(registerInformation.get("email"));
-        user.setFirstname(registerInformation.get("firstname"));
-        user.setMidname(registerInformation.get("midname"));
-        user.setLastname(registerInformation.get("lastname"));
-        user.setMobile(new BigInteger(registerInformation.get("mobile")));
-        user.setPassword(registerInformation.get("password"));
-        return user;
-    }
 }

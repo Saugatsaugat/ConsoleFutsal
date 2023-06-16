@@ -17,18 +17,18 @@ import java.util.List;
  */
 public abstract class CRUDRepo<T1> implements CRUDInterface<T1> {
 
-    private List<T1> list;
+   private List<T1> list;
     public CRUDRepo(){
-        list = new ArrayList();
+        list = new ArrayList<>();
     }
 
 
     @Override
-    public T1 create(T1 data) {
+    public boolean create(T1 data) {
         if (list.add(data)) {
-            return data;
+            return true;
         }
-        return null;
+        return false;
     }
 
     @Override
