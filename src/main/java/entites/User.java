@@ -1,38 +1,37 @@
 
 package entites;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
 /**
  *
  * @author saugat
  */
-public class User {
-    private BigDecimal id;
-    private String type;
+public class User extends AbstractEntity implements IAbstractEntity{
+
+    private String usertype;
     private String email;
     private String firstname;
     private String midname;
     private String lastname;
-    private BigInteger mobile;
-    private String password;
+    private Long mobile;
+    private String userpassword;
 
-    public void setId(BigDecimal id) {
-        this.id = id;
+    public String getUsertype() {
+        return usertype;
     }
 
-    public BigDecimal getId() {
-        return id;
+    public void setUsertype(String usertype) {
+        this.usertype = usertype;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public String getUserpassword() {
+        return userpassword;
     }
 
-    public String getType() {
-        return type;
+    public void setUserpassword(String userpassword) {
+        this.userpassword = userpassword;
     }
+
+    
 
     public void setEmail(String email) {
         this.email = email;
@@ -66,24 +65,20 @@ public class User {
         return midname;
     }
 
-    public void setMobile(BigInteger mobile) {
+    public void setMobile(Long mobile) {
         this.mobile = mobile;
     }
 
-    public BigInteger getMobile() {
+    public Long getMobile() {
         return mobile;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+ 
+    
+    @Override 
+    public String getTableName(){
+        return "User";
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String toString() {
-        return "User{ " + "id=" + id + ", type=" + type + ", email=" + email + ", firstname=" + firstname + ", lastname=" + lastname + ", mobile=" + mobile + ", password=" + password + '}';
-    }
+  
 }

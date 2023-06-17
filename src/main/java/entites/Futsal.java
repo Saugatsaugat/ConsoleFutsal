@@ -2,30 +2,25 @@
 package entites;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 /**
  *
  * @author saugat
  */
-public class Futsal {
-    private BigDecimal id;
+public class Futsal extends AbstractEntity implements IAbstractEntity{
     private String name;
-    private BigInteger pan;
+    private Long pan;
     private String address;
-    private BigInteger mobile;
+    private Long mobile;
     private BigDecimal rate;
-    private BigDecimal userId;
+    private Long userId;
 
-    public BigDecimal getId() {
-        return id;
-    }
-
+    
     public String getName() {
         return name;
     }
 
-    public BigInteger getPan() {
+    public Long getPan() {
         return pan;
     }
 
@@ -33,23 +28,19 @@ public class Futsal {
         return address;
     }
 
-    public BigInteger getMobile() {
+    public Long getMobile() {
         return mobile;
     }
 
     public BigDecimal getRate() {
         return rate;
     }
-
-    public void setId(BigDecimal id) {
-        this.id = id;
-    }
-
+    
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setPan(BigInteger pan) {
+    public void setPan(Long pan) {
         this.pan = pan;
     }
 
@@ -57,7 +48,7 @@ public class Futsal {
         this.address = address;
     }
 
-    public void setMobile(BigInteger mobile) {
+    public void setMobile(Long mobile) {
         this.mobile = mobile;
     }
 
@@ -65,18 +56,19 @@ public class Futsal {
         this.rate = rate;
     }
 
-    public BigDecimal getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(BigDecimal userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
     @Override
-    public String toString() {
-        return "Futsal{" + "id=" + id + ", name=" + name + ", pan=" + pan + ", address=" + address + ", mobile=" + mobile + ", rate=" + rate + ", userId=" + userId + '}';
+    public String getTableName() {
+        return "Futsal";
     }
+
 
     
     

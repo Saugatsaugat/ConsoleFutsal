@@ -6,6 +6,7 @@ package controller;
 
 import entites.User;
 import entites.UserCRUD;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -34,10 +35,10 @@ public class LoginController {
     }
 
     /////////////////////
-    public boolean verifylogin(String username, String password) {
-        User user = UserCRUD.obj.getDataByEmail(username);
+    public boolean verifylogin(String username, String password) throws SQLException {
+        User user = new UserCRUD(new User()).getEmailByData(username);
         password = new PasswordHashController().getPasswordHash(password);
-        if((user.getEmail().equals(username)) && (user.getPassword().equals(password))){
+        if((user.getEmail().equals(username)) && (user.getUserpassword().equals(password))){
               return true;
         }
         return false;

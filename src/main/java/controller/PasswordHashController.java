@@ -4,6 +4,7 @@
  */
 package controller;
 
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 /**
@@ -11,19 +12,24 @@ import java.security.MessageDigest;
  * @author saugat
  */
 public class PasswordHashController {
+
     public String getPasswordHash(String password) {
         MessageDigest messageDigest;
-        String stringHash=null;
+        String encodedPassword = null;
         try {
             messageDigest = MessageDigest.getInstance("SHA-256");
             messageDigest.update(password.getBytes());
-            stringHash = new String(messageDigest.digest());
-            return stringHash;
+           String stringHash = new String(messageDigest.digest());
+
+            byte[] utf8Bytes = stringHash.getBytes(StandardCharsets.UTF_8);
+            encodedPassword = new String(utf8Bytes, StandardCharsets.UTF_8);
+            
+            return encodedPassword;
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
 
         }
-        return stringHash;
+        return encodedPassword;
 
     }
 

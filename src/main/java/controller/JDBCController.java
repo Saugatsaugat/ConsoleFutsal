@@ -18,7 +18,7 @@ public class JDBCController {
     Connection con;
     public JDBCController() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        String database = "COMPANY";
+        String database = "futsal";
         String server = "localhost";
         String username = "saugat";
         String password = "Nepal@123";

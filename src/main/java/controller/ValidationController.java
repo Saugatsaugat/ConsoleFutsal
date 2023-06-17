@@ -4,12 +4,9 @@
  */
 package controller;
 
-import entites.Futsal;
-import entites.FutsalCRUD;
 import entites.User;
 import entites.UserCRUD;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -56,16 +53,16 @@ public class ValidationController<T> {
         return msg;
     }
     public List<String> validateUserRegistration(User registerInformation){
-        List<String> errorMessage = new ArrayList<String>();
-        BigDecimal id = registerInformation.getId();
-        String type = registerInformation.getType();
+        List<String> errorMessage = new ArrayList<>();
+       
+        String type = registerInformation.getUsertype();
         String firstname = registerInformation.getFirstname();
         String lastname = registerInformation.getLastname();
         String email = registerInformation.getEmail();
-        String password = registerInformation.getPassword();
-        BigInteger mobile = registerInformation.getMobile();
+        String password = registerInformation.getUserpassword();
+        Long mobile = registerInformation.getMobile();
         
-        if((id==null)||(firstname==null)||(lastname==null)||(email==null)||(password==null)||(mobile==null)){
+        if((firstname==null)||(lastname==null)||(email==null)||(password==null)||(mobile==null)){
             errorMessage.add("Only midname can be null");
         }
         String msg1 = checkEmail(email);
@@ -85,34 +82,39 @@ public class ValidationController<T> {
         return errorMessage;
         
     }
-    public boolean checkIfEmailExist(String email) {
-        List<User> userList = UserCRUD.obj.getAllData();
-        for (User user : userList) {
-            if (user.getEmail().equals(email)) {
-                return true;
-            }
+    public boolean checkIfEmailExist(String email) throws SQLException {
+        if(email!=null){
+        User userList = new UserCRUD(new User()).getEmailByData(email);
+        if(userList!=null){
+            return true;
+        }
+        else{
+                    return false;
 
         }
-        return false;
-    }
-    public boolean checkIfIdExistForUser(BigDecimal id) {
-        List<User> userList =  UserCRUD.obj.getAllData();
-        for (User user : userList) {
-            if (user.getId().equals(id)) {
-                return true;
-            }
         }
-        return false;
-    }
-    public boolean checkIfIdExistForFutsal(BigDecimal id) {
-        List<Futsal> futsalList = FutsalCRUD.obj.getAllData();
-        for (Futsal futsal : futsalList) {
-            if (futsal.getId().equals(id)) {
-                return true;
-            }
+        else{
+            return false;
         }
-        return false;
     }
+//    public boolean checkIfIdExistForUser(Long id) throws SQLException {
+//        List<User> userList = new UserCRUD(new User()).getAllData();
+//        for (User user : userList) {
+//            if (user.getId().equals(id)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+//    public boolean checkIfIdExistForFutsal(long id) throws SQLException {
+//        List<Futsal> futsalList = new FutsalCRUD(new Futsal()).getAllData();
+//        for (Futsal futsal : futsalList) {
+//            if (futsal.getId().equals(id)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     
         
