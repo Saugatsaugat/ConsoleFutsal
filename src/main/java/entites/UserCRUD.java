@@ -40,10 +40,14 @@ public class UserCRUD extends CRUDInterface<User> {
         ps.setString(5, data.getLastname());
         ps.setLong(6, data.getMobile());
         ps.setString(7, data.getUserpassword());
-        if (ps.execute()!=false) {
+        int status = ps.executeUpdate();
+        if(status>0) {
             return true;
         }
-        return false;
+        else{
+            return false;
+        }
+        
     }
 
     public User getEmailByData(String email) throws SQLException {

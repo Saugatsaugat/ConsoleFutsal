@@ -47,12 +47,16 @@ public abstract class CRUDInterface<T extends IAbstractEntity> {
     }
 
     public boolean deleteById(Long id) throws SQLException {
-        String deleteQuery = "delete from " + obj.getTableName() + "where id="+id;
-        if(st.execute(deleteQuery)){
+        String deleteQuery = "delete from " + obj.getTableName() + " where id=?";
+        PreparedStatement ps = getConnection().prepareStatement(deleteQuery);
+        ps.setLong(1,id);
+        int status = ps.executeUpdate();
+        if(status>0){
             return true;
         }
+        else{
         return false;
-        
+        }
     }
 
 }

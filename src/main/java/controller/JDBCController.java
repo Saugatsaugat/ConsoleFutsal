@@ -29,6 +29,15 @@ public class JDBCController {
     public Connection getCon(){
         return con;
     }  
+    public String successResult(){
+        if(con!=null){
+            return "Established";
+        }
+        return null;
+    }
+
+   
+    
     
 }
 
